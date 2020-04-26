@@ -16,4 +16,8 @@ export default class Vehicle {
   public loadGas(gasAmount: number): void {
     this.availableGas += gasAmount
   }
+
+  public isEnoughGasForTravel(travelDistance: number): boolean {
+    return false
+  }
 }
