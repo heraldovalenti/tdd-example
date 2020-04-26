@@ -15,3 +15,13 @@ We need to develop a class that represents a vehicle, and it should provide the 
 - Travel a given distance.
 - Tell if there is enough gas to travel the distance.
 - Record the state of the traveled and remaining distance (if any).
+
+# Explanation
+
+Some commits has added tests which represents step 1, and then a following commit representing step 2.
+In commit tagged as "refactor" a small refactor is performed, which represents step 3.
+
+# Running the project
+
+The project is implemented using Typescript to demonstrate "compilation" (transpilation) failures and tests are implemented using Jest.
+To run the project just install dependencies with `npm i` and then run tests with `npm t`.
