@@ -1,3 +1,7 @@
 export default class Vehicle {
-  constructor() {}
+  constructor(private consumptionRate: number) {}
+
+  public getConsumptionRate(): number {
+    return this.consumptionRate
+  }
 }
