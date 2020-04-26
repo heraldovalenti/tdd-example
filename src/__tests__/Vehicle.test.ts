@@ -86,3 +86,19 @@ describe('Vehicle allow to travel and record traveled distance', () => {
     expect(car.getAvailableGas()).toBe(0)
   })
 })
+
+describe('Vehicle records remaining travel distances', () => {
+  test('Vehicle remaining distance is recorded when gas is not enough', () => {
+    const car = new Vehicle(1.5)
+    car.loadGas(15)
+    car.travelDistance(15)
+    expect(car.getRemainingTravelDistance()).toBe(5)
+  })
+  test('Vehicle remaining distance is acumulated when gas is not enough', () => {
+    const car = new Vehicle(1.5)
+    car.loadGas(15)
+    car.travelDistance(15)
+    car.travelDistance(5)
+    expect(car.getRemainingTravelDistance()).toBe(10)
+  })
+})

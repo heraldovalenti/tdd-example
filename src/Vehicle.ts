@@ -1,10 +1,12 @@
 export default class Vehicle {
   private availableGas: number
   private travelledDistance: number
+  private remainingTravelDistance: number
 
   constructor(private consumptionRate: number) {
     this.availableGas = 0
     this.travelledDistance = 0
+    this.remainingTravelDistance = 0
   }
 
   public getConsumptionRate(): number {
@@ -37,6 +39,7 @@ export default class Vehicle {
       this.travelDistance(distanceForAvailableGas)
       // remaining distance to complete travel
       const remainingDistance = distance - distanceForAvailableGas
+      this.remainingTravelDistance += remainingDistance
     }
   }
 
@@ -46,5 +49,9 @@ export default class Vehicle {
 
   public getTraveledDistance(): number {
     return this.travelledDistance
+  }
+
+  public getRemainingTravelDistance(): number {
+    return this.remainingTravelDistance
   }
 }
