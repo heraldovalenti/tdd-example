@@ -51,3 +51,38 @@ describe('Vehicle should tell if there is enough gas to make a travel', () => {
     expect(car.isEnoughGasForTravel(1.1)).toBeFalsy()
   })
 })
+
+describe('Vehicle allow to travel and record traveled distance', () => {
+  test('Vehicle records traveled distance', () => {
+    const car = new Vehicle(1.5)
+    car.loadGas(15)
+    car.travelDistance(10)
+    expect(car.getTraveledDistance()).toBe(10)
+  })
+  test('Vehicle records remaining gas', () => {
+    const car = new Vehicle(1.5)
+    car.loadGas(15)
+    car.travelDistance(5)
+    expect(car.getAvailableGas()).toBe(7.5)
+  })
+  test('Vehicle acumulates traveled distances', () => {
+    const car = new Vehicle(1.5)
+    car.loadGas(15)
+    car.travelDistance(5)
+    expect(car.getTraveledDistance()).toBe(5)
+    car.travelDistance(5)
+    expect(car.getTraveledDistance()).toBe(10)
+  })
+  test('Vehicle does not travel distances beyond available gas', () => {
+    const car = new Vehicle(1.5)
+    car.loadGas(15)
+    car.travelDistance(15)
+    expect(car.getTraveledDistance()).toBe(10)
+  })
+  test('Vehicle available gas is zero after travelling a distance greater than possible', () => {
+    const car = new Vehicle(1.5)
+    car.loadGas(15)
+    car.travelDistance(15)
+    expect(car.getAvailableGas()).toBe(0)
+  })
+})

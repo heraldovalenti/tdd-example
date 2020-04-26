@@ -20,4 +20,10 @@ export default class Vehicle {
   public isEnoughGasForTravel(travelDistance: number): boolean {
     return this.consumptionRate * travelDistance <= this.availableGas
   }
+
+  public travelDistance(distance: number): void {}
+
+  public getTraveledDistance(): number {
+    return 0
+  }
 }
