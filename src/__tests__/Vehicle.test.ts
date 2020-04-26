@@ -1,6 +1,9 @@
 import Vehicle from '../Vehicle'
 
-test('create a vehicle', () => {
-  const car = new Vehicle()
-  expect(car).not.toBeUndefined()
+describe('Vehicle should allow configuration of gas consumption rate', () => {
+  test('create a vehicle with a given gas consumption rate', () => {
+    const consumptionRate = 1.5
+    const car = new Vehicle(consumptionRate)
+    expect(car.getConsumptionRate()).toBe(consumptionRate)
+  })
 })
