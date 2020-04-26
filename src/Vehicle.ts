@@ -1,8 +1,10 @@
 export default class Vehicle {
   private availableGas: number
+  private travelledDistance: number
 
   constructor(private consumptionRate: number) {
     this.availableGas = 0
+    this.travelledDistance = 0
   }
 
   public getConsumptionRate(): number {
@@ -18,12 +20,31 @@ export default class Vehicle {
   }
 
   public isEnoughGasForTravel(travelDistance: number): boolean {
-    return this.consumptionRate * travelDistance <= this.availableGas
+    return this.gasConsumptionForTravel(travelDistance) <= this.availableGas
   }
 
-  public travelDistance(distance: number): void {}
+  private gasConsumptionForTravel(travelDistance: number): number {
+    return this.consumptionRate * travelDistance
+  }
+
+  public travelDistance(distance: number): void {
+    const consumptionForTravel = this.gasConsumptionForTravel(distance)
+    if (consumptionForTravel <= this.availableGas) {
+      this.travelledDistance += distance
+      this.availableGas -= consumptionForTravel
+    } else {
+      const distanceForAvailableGas = this.distanceForGas(this.availableGas)
+      this.travelDistance(distanceForAvailableGas)
+      // remaining distance to complete travel
+      const remainingDistance = distance - distanceForAvailableGas
+    }
+  }
+
+  private distanceForGas(gas: number): number {
+    return gas / this.consumptionRate
+  }
 
   public getTraveledDistance(): number {
-    return 0
+    return this.travelledDistance
   }
 }
